@@ -1,13 +1,20 @@
 import { useDiceSet } from './useDiceSet';
-import type { TargetRoll, TotalRoll } from '~/types/Rolls';
-import type { TargetRollResult, TotalRollResult } from '~/types/RollResults';
+import type { MatchRoll, TargetRoll, TotalRoll } from '~/types/Rolls';
+import type {
+	MatchRollResult,
+	TargetRollResult,
+	TotalRollResult,
+} from '~/types/RollResults';
 
 export function useRoll() {
 	const diceSet = useDiceSet();
 
 	function roll(
-		rollObj: TargetRoll | TotalRoll
-	): TargetRollResult | TotalRollResult {
+		rollObj: MatchRoll | TargetRoll | TotalRoll
+	): MatchRollResult | TargetRollResult | TotalRollResult {
+		if (rollObj.rollType === 'match') {
+			return rollForMatch(rollObj);
+		}
 		if (rollObj.rollType === 'target') {
 			return rollForTarget(rollObj);
 		}
@@ -70,6 +77,70 @@ export function useRoll() {
 			result.score += n;
 		}
 		result.display += ']';
+		return result;
+	}
+
+	function rollForMatch(rollObj: MatchRoll): MatchRollResult {
+		const { diceCount, margin, sideCount, target } = rollObj;
+
+		if (diceCount < 1) {
+			throw new RangeError('Dice count for a roll must be 1 or greater');
+		}
+		if (diceCount > 64) {
+			throw new RangeError('Dice count for a roll cannot be greater than 64');
+		}
+		if (sideCount < 1) {
+			throw new RangeError('Side count for a die must be 1 or greater');
+		}
+		if (sideCount > 512) {
+			throw new RangeError('Side count for a die cannot be greater than 512');
+		}
+		if (target < 1) {
+			throw new RangeError('Target for a match roll must be 1 or greater');
+		}
+		if (target > 6400) {
+			throw new RangeError(
+				'Target for a match roll cannot be greater than 6400'
+			);
+		}
+		if (margin && margin < 1) {
+			throw new RangeError('Margin for a match roll must be 1 or greater');
+		}
+		if (margin && margin > 64) {
+			throw new RangeError('Margin for a match roll cannot be greater than 64');
+		}
+
+		let result: MatchRollResult = {
+			diceCount: diceCount,
+			diceResults: [],
+			display: '[',
+			rollType: 'match',
+			score: 0,
+			sideCount: sideCount,
+			target: target,
+			total: 0,
+		};
+
+		for (let i = 0; i < diceCount; i++) {
+			const n = diceSet.dx(sideCount);
+			result.diceResults.push(n);
+			result.total += n;
+			i + 1 === diceCount
+				? (result.display += '' + n)
+				: (result.display += n + ', ');
+		}
+		result.display += ']; Total: ' + result.total + '; ';
+
+		const score = margin
+			? scoreWithMargin(target, margin, result.total)
+			: result.total - result.target;
+
+		if (score > 0) {
+			result.display += 'Score: +' + score;
+		} else if (score <= 0) {
+			result.display += 'Score: ' + score;
+		}
+
 		return result;
 	}
 
@@ -219,6 +290,31 @@ export function useRoll() {
 		}
 		result.display += `; Score: ${result.score}.`;
 		return result;
+	}
+
+	/**
+	 *
+	 * @param {number} target - The target number the total hopes to match
+	 * @param {number} margin - The margin +/- the target that also counts as a match
+	 * @param {number} total - The total from a dice roll
+	 * @returns {number} - A score based on how far the total is from the margin
+	 */
+	function scoreWithMargin(
+		target: number,
+		margin: number,
+		total: number
+	): number {
+		const floor = target - margin;
+		const ceiling = target + margin;
+		if (total >= floor && total <= ceiling) {
+			return 0;
+		} else if (total < floor) {
+			return total - floor;
+		} else if (total > ceiling) {
+			return total - ceiling;
+		} else {
+			return -500;
+		}
 	}
 
 	return { roll };

@@ -15,6 +15,21 @@ type RollResult = {
 };
 
 /**
+ * A MatchRollResult inherits RollResult features with extra attributes
+ * to reflect the results of a match roll:
+ * - margin, establishes a margin +/- the target that counts as a match
+ * - rollType, included on all RollResult children to identify type at runtime
+ * - target, the number indicating an exact match on the roll that scores 0
+ * - total, the total from the dice roll
+ */
+export type MatchRollResult = RollResult & {
+	margin?: number;
+	rollType: 'match';
+	target: number;
+	total: number;
+};
+
+/**
  * A TargetRollResult inherits RollResult features with extra attributes
  * to reflect the results of a target roll:
  * - target, the number indicating what minimum roll will score a point,
