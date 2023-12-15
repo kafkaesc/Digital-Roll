@@ -5,44 +5,44 @@
  * range [1-22]
  */
 export function useDiceSet() {
-	/** Return a random number [1-4] */
+	/** @returns {number} A random number [1-4] */
 	function d4(): number {
 		return Math.floor(Math.random() * 4) + 1;
 	}
 
-	/** Return a random number [1-6] */
+	/** @returns {number} A random number [1-6] */
 	function d6(): number {
 		return Math.floor(Math.random() * 6) + 1;
 	}
 
-	/** Return a random number [1-8] */
+	/** @returns {number} A random number [1-8] */
 	function d8(): number {
 		return Math.floor(Math.random() * 8) + 1;
 	}
 
-	/** Return a random number [1-10] */
+	/** @returns {number} A random number [1-10] */
 	function d10(): number {
 		return Math.floor(Math.random() * 10) + 1;
 	}
 
-	/** Return a random number [1-12] */
+	/** @returns {number} A random number [1-12] */
 	function d12(): number {
 		return Math.floor(Math.random() * 12) + 1;
 	}
 
-	/** Return a random number [1-20] */
+	/** @returns {number} A random number [1-20] */
 	function d20(): number {
 		return Math.floor(Math.random() * 20) + 1;
 	}
 
-	/** Return a random number [1-100] */
+	/** @returns {number} A random number [1-100] */
 	function d100(): number {
 		return Math.floor(Math.random() * 100) + 1;
 	}
 
 	/**
-	 * Return a random number [1-x]
 	 * @param {number} x - Top bound of the random number
+	 * @returns {number} A random number within [1-x]
 	 */
 	function dx(x: number): number {
 		return Math.floor(Math.random() * x) + 1;

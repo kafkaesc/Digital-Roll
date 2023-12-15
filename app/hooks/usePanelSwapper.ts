@@ -26,7 +26,8 @@ export function usePanelSwapper(panelCodes: string[]) {
 	}
 
 	/**
-	 * @returns true if st is contained within the panel codes, otherwise false
+	 * @param {string} st The string to test if present in the panelCodes
+	 * @returns {boolean} true if st is contained within the panel codes, otherwise false
 	 */
 	function validCode(st: string): boolean {
 		for (let i = 0; i < panelCodes.length; i++) {
@@ -37,5 +38,5 @@ export function usePanelSwapper(panelCodes: string[]) {
 		return false;
 	}
 
-	return { panel: __activePanel, setPanel };
+	return { panel: __activePanel, reset, setPanel };
 }

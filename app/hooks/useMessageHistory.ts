@@ -37,7 +37,7 @@ export function useMessageHistory() {
 
 	/**
 	 * Push a new message onto the internal stack.
-	 * @param {string} st - The new message to push
+	 * @param {string} st The new message to push
 	 */
 	function push(st: string): void {
 		_stack.current.unshift(st);
