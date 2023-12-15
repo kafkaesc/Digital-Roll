@@ -1,4 +1,8 @@
-import type { TargetRollResult, TotalRollResult } from '~/types/RollResults';
+import type {
+	MatchRollResult,
+	TargetRollResult,
+	TotalRollResult,
+} from '~/types/RollResults';
 import { useRoll } from './useRoll';
 
 export default function useCommandRoll(): any {
@@ -71,6 +75,50 @@ export default function useCommandRoll(): any {
 	}
 
 	/**
+	 * Takes string st in the format wx representing a match roll option to
+	 * widen the target of the roll by x. Ex.: /roll 2d6 m7 w2 will score zero
+	 * for a roll within [5-7].
+	 * @param {string} st - A string (wx) where x is a number
+	 * @returns {number} The margin value from the string
+	 */
+	function splitMarginString(st: string) {
+		const margin = st.includes('w') ? st.split('w') : st.split('W');
+		const num = Math.floor(+margin[1]);
+		if (isNaN(num)) {
+			throw TypeError(`Expected a number and received: ${margin[1]}`);
+		}
+		if (num < 1) {
+			throw RangeError(`The match target must be greater than 0`);
+		}
+		if (num > 64) {
+			throw RangeError(`The match target cannot be greater than 64`);
+		}
+		return num;
+	}
+
+	/**
+	 * Takes string st in the format mx representing a dice roll option for the
+	 * number the roll result attempts to match. Ex.: /roll 2d6 m7 will score
+	 * based on the roll total's distance from 7.
+	 * @param {string} st - A string (mx) where x is a number
+	 * @returns {number} The target match value from the string
+	 */
+	function splitMatchString(st: string) {
+		const target = st.includes('m') ? st.split('m') : st.split('M');
+		const num = Math.floor(+target[1]);
+		if (isNaN(num)) {
+			throw TypeError(`Expected a number and received: ${target[1]}`);
+		}
+		if (num < 1) {
+			throw RangeError(`The match target must be greater than 0`);
+		}
+		if (num > 6400) {
+			throw RangeError(`The match target cannot be greater than 6400`);
+		}
+		return num;
+	}
+
+	/**
 	 * Takes string st in the format px representing a dice roll option to
 	 * target the number x as a lower bound to subtract the penalty amount from
 	 * the roll total. Ex.: /5d10 t6 p2 means each die that rolls 2 or lower
@@ -111,14 +159,18 @@ export default function useCommandRoll(): any {
 	/**
 	 * Parses the provided string to execute a dice roll and return the results.
 	 * @param {string} st - A string representing the details of the roll.
-	 * @returns
+	 * @returns {MatchRollResult | TargetRollResult | TotalRollResult} Result
+	 * object indicating the results of the roll
 	 */
-	function runRoll(st: string): TargetRollResult | TotalRollResult {
+	function runRoll(
+		st: string
+	): MatchRollResult | TargetRollResult | TotalRollResult {
 		const commandParts: Array<string> = st.split(' ');
 		const diceString = commandParts[1];
 
 		const { diceCount, sideCount, modifier } = splitDiceString(diceString);
 
+		let matchRoll = false;
 		let totalRoll = false;
 		let targetRoll = false;
 
@@ -126,7 +178,7 @@ export default function useCommandRoll(): any {
 			totalRoll = true;
 		}
 
-		let kh, kl, t, b, p;
+		let kh, kl, m, w, t, b, p;
 		if (commandParts.length > 2) {
 			for (let i = 2; i < commandParts.length; i++) {
 				if (commandParts[i].toLocaleLowerCase() === 'kh') {
@@ -136,6 +188,14 @@ export default function useCommandRoll(): any {
 				if (commandParts[i].toLocaleLowerCase() === 'kl') {
 					kl = true;
 					totalRoll = true;
+				}
+				if (commandParts[i].charAt(0).toLocaleLowerCase() === 'm') {
+					m = splitMatchString(commandParts[i]);
+					matchRoll = true;
+				}
+				if (commandParts[i].charAt(0).toLocaleLowerCase() === 'w') {
+					w = splitMarginString(commandParts[i]);
+					matchRoll = true;
 				}
 				if (commandParts[i].charAt(0).toLocaleLowerCase() === 't') {
 					t = splitTargetString(commandParts[i]);
@@ -152,11 +212,32 @@ export default function useCommandRoll(): any {
 			}
 		}
 
-		if (totalRoll && targetRoll) {
+		let typeCount = 0;
+		if (matchRoll) typeCount++;
+		if (targetRoll) typeCount++;
+		if (totalRoll) typeCount++;
+
+		if (typeCount > 1) {
 			throw Error(
 				`Invalid combination of roll parameters. ` +
 					`Run /help to find out how to format a /roll command.`
 			);
+		} else if (matchRoll) {
+			if (!m) {
+				throw Error(
+					`Invalid combination of roll parameters. If a match roll is ` +
+						`being made, a match value must be provided via 'mx', where ` +
+						`x is a number.`
+				);
+			}
+			const result = roll({
+				diceCount: diceCount,
+				margin: w,
+				rollType: 'match',
+				sideCount: sideCount,
+				target: m,
+			});
+			return result;
 		} else if (targetRoll) {
 			if (!t) {
 				throw Error(
