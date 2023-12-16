@@ -3,17 +3,21 @@ import { usePanelSwapper } from './usePanelSwapper';
 const panelCodes = [
 	'home',
 	'chatCommands',
+	'matchRoll',
 	'rollTypes',
 	'targetRoll',
 	'totalRoll',
+	'walkthrough',
 ];
 
 const panels = {
 	home: 'home',
 	chatCommands: 'chatCommands',
+	matchRoll: 'matchRoll',
 	rollTypes: 'rollTypes',
 	targetRoll: 'targetRoll',
 	totalRoll: 'totalRoll',
+	walkthrough: 'walkthrough',
 };
 
 /**
