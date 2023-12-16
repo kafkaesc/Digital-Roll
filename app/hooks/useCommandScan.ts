@@ -5,7 +5,7 @@
 export default function useCommandScan() {
 	/**
 	 * @param {string} st Possible chat command
-	 * @returns true if the string starts with the '/' command character, otherwise false
+	 * @returns {boolean} true if the string starts with the '/' command character, otherwise false
 	 */
 	function scanForCommand(st: string): boolean {
 		if (st.toLocaleLowerCase().substring(0, 1) === '/') {
@@ -16,7 +16,7 @@ export default function useCommandScan() {
 
 	/**
 	 * @param {string} st Possible chat command
-	 * @returns true if the string starts with the '/help' command, otherwise false
+	 * @returns {boolean} true if the string starts with the '/help' command, otherwise false
 	 */
 	function scanForHelp(st: string): boolean {
 		if (st.toLocaleLowerCase().substring(0, 5) === '/help') {
@@ -27,7 +27,7 @@ export default function useCommandScan() {
 
 	/**
 	 * @param {string} st Possible chat command
-	 * @returns true if the string starts with the '/roll' command, otherwise false
+	 * @returns {boolean} true if the string starts with the '/roll' command, otherwise false
 	 */
 	function scanForRoll(st: string): boolean {
 		if (st.toLocaleLowerCase().substring(0, 5) === '/roll') {

@@ -14,8 +14,10 @@ export default function useCommandRoll(): any {
 	 * sides the dice have, and z represents a modifier for the result. These
 	 * numbers will be returned on an object in the form:
 	 * {diceCount, sideCount, modifier }
-	 * @param {string} st - A string (dy | xdy | xdy+z | xdy-z)
-	 * where x, y, and z are numbers
+	 * @param {string} st A string (dy | xdy | xdy+z | xdy-z) where
+	 * x, y, and z are numbers
+	 * @returns An object containing the diceCount, sideCount, and modifier
+	 * values from the string
 	 */
 	function splitDiceString(st: string) {
 		// Default dice count is 1 if user does not specify
@@ -60,9 +62,10 @@ export default function useCommandRoll(): any {
 	 * amount value. Ex.: /roll 5d10 t6 b9 means each die that rolls 9 or
 	 * greater will add bonusAmount to the roll total. The default bonus
 	 * amount is 1
-	 * @param {string} st - A string (bx) where b is a number
+	 * @param {string} st A string (bx) where b is a number
+	 * @returns {number} The bonus value from the string
 	 */
-	function splitBonusString(st: string) {
+	function splitBonusString(st: string): number {
 		const bonusTarget = st.includes('b') ? st.split('b') : st.split('B');
 		const num = Math.floor(+bonusTarget[1]);
 		if (isNaN(num)) {
@@ -78,10 +81,10 @@ export default function useCommandRoll(): any {
 	 * Takes string st in the format wx representing a match roll option to
 	 * widen the target of the roll by x. Ex.: /roll 2d6 m7 w2 will score zero
 	 * for a roll within [5-7].
-	 * @param {string} st - A string (wx) where x is a number
+	 * @param {string} st A string (wx) where x is a number
 	 * @returns {number} The margin value from the string
 	 */
-	function splitMarginString(st: string) {
+	function splitMarginString(st: string): number {
 		const margin = st.includes('w') ? st.split('w') : st.split('W');
 		const num = Math.floor(+margin[1]);
 		if (isNaN(num)) {
@@ -100,10 +103,10 @@ export default function useCommandRoll(): any {
 	 * Takes string st in the format mx representing a dice roll option for the
 	 * number the roll result attempts to match. Ex.: /roll 2d6 m7 will score
 	 * based on the roll total's distance from 7.
-	 * @param {string} st - A string (mx) where x is a number
+	 * @param {string} st A string (mx) where x is a number
 	 * @returns {number} The target match value from the string
 	 */
-	function splitMatchString(st: string) {
+	function splitMatchString(st: string): number {
 		const target = st.includes('m') ? st.split('m') : st.split('M');
 		const num = Math.floor(+target[1]);
 		if (isNaN(num)) {
@@ -124,9 +127,10 @@ export default function useCommandRoll(): any {
 	 * the roll total. Ex.: /5d10 t6 p2 means each die that rolls 2 or lower
 	 * will subtract the penalty amount from the roll total. The default penalty
 	 * amount is 1.
-	 * @param {string} st - A string (px) where x is a number
+	 * @param {string} st A string (px) where x is a number
+	 * @returns {number} The penalty value from the string
 	 */
-	function splitPenaltyString(st: string) {
+	function splitPenaltyString(st: string): number {
 		const target = st.includes('p') ? st.split('p') : st.split('P');
 		const num = Math.floor(+target[1]);
 		if (isNaN(num)) {
@@ -142,9 +146,10 @@ export default function useCommandRoll(): any {
 	 * Takes string st in the format tx representing a dice roll option to
 	 * target the number x for a successful roll. Ex.: /roll 5d10 t6 means each
 	 * die that rolls 6 or greater will result in +1 for the success count
-	 * @param {string} st - A string (tx) where x is a number
+	 * @param {string} st A string (tx) where x is a number
+	 * @returns {number} The target value from the string
 	 */
-	function splitTargetString(st: string) {
+	function splitTargetString(st: string): number {
 		const target = st.includes('t') ? st.split('t') : st.split('T');
 		const num = Math.floor(+target[1]);
 		if (isNaN(num)) {
@@ -158,7 +163,7 @@ export default function useCommandRoll(): any {
 
 	/**
 	 * Parses the provided string to execute a dice roll and return the results.
-	 * @param {string} st - A string representing the details of the roll.
+	 * @param {string} st A string representing the details of the roll.
 	 * @returns {MatchRollResult | TargetRollResult | TotalRollResult} Result
 	 * object indicating the results of the roll
 	 */
