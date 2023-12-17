@@ -49,29 +49,27 @@ export default function RoomLayout() {
 
 	// https://medium.com/@susiekim9/how-to-compensate-for-the-ios-viewport-unit-bug-46e78d54af0d
 	return (
-		<div className="h-screen h-[100dvh]">
-			<div className="flex flex-col h-full">
-				{/* Room Heading */}
-				<div>
-					<H1>Chat Room</H1>
-				</div>
-				<div className="flex-auto overflow-y-hidden">
-					{/* Left Column */}
-					<div className="inline-block w-1/2 h-full overflow-y-auto align-top">
-						<div className="flex flex-col h-full">
-							<div className="flex-auto p-1 m-1 overflow-y-scroll border">
-								<ChatHistory chatHistory={chatHistory} />
-							</div>
-							<div className="m-1">
-								<ChatInput submit={handleChatSubmit} />
-							</div>
+		<div className="flex flex-col h-[100dvh]">
+			{/* Room Heading */}
+			<div>
+				<H1>Chat Room</H1>
+			</div>
+			<div className="flex-auto overflow-y-hidden">
+				{/* Left Column */}
+				<div className="inline-block w-1/2 h-full overflow-y-auto align-top">
+					<div className="flex flex-col h-full">
+						<div className="flex-auto p-1 m-1 overflow-y-scroll border">
+							<ChatHistory chatHistory={chatHistory} />
+						</div>
+						<div className="m-1">
+							<ChatInput submit={handleChatSubmit} />
 						</div>
 					</div>
-					{/* Right Column */}
-					<div className="inline-block w-1/2 h-full p-1 align-top">
-						<div className="h-full p-1 overflow-y-scroll border">
-							<RoomInfoArea />
-						</div>
+				</div>
+				{/* Right Column */}
+				<div className="inline-block w-1/2 h-full p-1 align-top">
+					<div className="h-full p-1 overflow-y-scroll border">
+						<RoomInfoArea />
 					</div>
 				</div>
 			</div>
