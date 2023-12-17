@@ -12,12 +12,11 @@ export default function InfoWalkthrough() {
 			<P>
 				The <CodeSpan>/roll</CodeSpan> command contains three different types of
 				rolls each with optional parameters. This walkthrough will take you
-				through all these different options, step-by-step, so that you'll have
-				an understanding of <CodeSpan>/roll</CodeSpan>'s capabilities at the
-				end.
+				through all these different options, step-by-step, so that you'll
+				understand <CodeSpan>/roll</CodeSpan>'s capabilities at the end.
 			</P>
 			<P>
-				Two basic attributes for all dice rolls is (1) the number of dice to
+				Two basic attributes for all dice rolls are (1) the number of dice to
 				roll and (2) the number of sides the dice have.
 			</P>
 			<P>
@@ -81,18 +80,18 @@ export default function InfoWalkthrough() {
 			</P>
 			<P>
 				There is another feature in Dungeons & Dragons where a roll can be made
-				"with advantage." Rolling with advantage means the player rolls two d20s
+				"with advantage." Rolling with advantage means the player rolls two d20
 				and uses the higher roll as their result while ignoring the other one.
 				For example, if a player rolls a 5 on the first d20 and a 10 on the
-				second d20, they would use 10 as their score. Digital Roll can account
+				second d20, they will use 10 as their score. Digital Roll can account
 				for this. You can add <CodeSpan>kh</CodeSpan> to a roll to "keep
 				highest" among the rolled dice. A player rolling a d20 at advantage
 				would enter <CodeSpan>/roll 2d20 kh</CodeSpan>.
 			</P>
 			<P>
 				There is a reverse concept in Dungeons & Dragons when a player has to
-				roll "with disadvantage." This means the player rolls to d20s and has to
-				keep the lowers score as their result. Digital Roll can account for this
+				roll "with disadvantage." This means the player rolls two d20 and must
+				keep the lower score as their result. Digital Roll can account for this
 				as well. You can add <CodeSpan>kl</CodeSpan> to a roll to "keep lowest"
 				among the rolled dice. A player rolling a d20 at disadvantage would
 				enter <CodeSpan>/roll 2d20 kl</CodeSpan>.
@@ -102,7 +101,7 @@ export default function InfoWalkthrough() {
 				<CodeSpan>kl</CodeSpan> are flexible beyond the advantage roles from
 				Dungeons & Dragons. A user can just as easily enter{' '}
 				<CodeSpan>/roll 5d6 kh</CodeSpan>, which will use the highest roll from
-				among the five d6. (At tht point your odds of a good roll are pretty
+				among the five d6. (At that point your odds of a good roll are pretty
 				high!)
 			</P>
 			<P>
@@ -118,11 +117,11 @@ export default function InfoWalkthrough() {
 				<A href="https://vtm.paradoxwikis.com" rel="noreferrer" target="_blank">
 					Vampire: The Masquerade
 				</A>{' '}
-				players make skill rolls that score based on how many d10s roll a 6 or
+				players make skill rolls that score based on how many d10 roll a 6 or
 				higher. For example, if a player has a strength of 4 that means they
-				will roll four d10s. If those four dice land on 7, 6, 5, and 4 then the
-				roll results in a score of 2. A point for each die {`>=`} 6 and no
-				points for any die below that.
+				will roll four d10. If those four dice land on 7, 6, 5, and 4 then the
+				roll results in a score of 2. A point for each die greater than or equal
+				to 6 and no points for any die below that.
 			</P>
 			<P>
 				A player in this situation would make a target roll with 6 as the target
@@ -136,34 +135,50 @@ export default function InfoWalkthrough() {
 			</P>
 			<P>
 				Note: In this case 1 is the minimum for any die roll, but when a target
-				roll has a penalty value, the -1 will be applied when a roll is {`<= `}
-				the penalty number. For example, p2 means the roll will take -1 on a 1
-				or 2.
+				roll has a penalty value, the -1 will be applied when a roll is less
+				than or equal to the penalty number. For example, p2 means the roll will
+				take -1 on a 1 or 2.
 			</P>
 			<P>
 				The game{' '}
 				<A href="http://exalted.xi.co.nz" rel="noreferrer" target="_blank">
 					Exalted
 				</A>{' '}
-				has rolls similar to Vampire: The Masquerade with the addition of a
-				bonus point on any die that rolls 10. For example, if a player rolls two
-				d10s and the result is 8 and 10, that roll will score 3 points: one
-				point for the 8 and two points for the 10. A player can include this
-				penalty in their roll by entering <CodeSpan>/roll 2d10 t6 b10</CodeSpan>
-				.
+				has rolls like Vampire: The Masquerade with the addition of a bonus
+				point on any die that rolls 10. For example, if a player rolls two d10
+				and the result is 8 and 10, that roll will score 3 points: one point for
+				the 8 and two points for the 10. A player can include this penalty in
+				their roll by entering <CodeSpan>/roll 2d10 t6 b10</CodeSpan>.
 			</P>
 			<P>
 				Note: These games use d10s, so 10 is the maximum for a die roll, but
 				when a target roll has a bonus value the bonus will be applied when a
-				roll is {`>=`} the penalty number. For example a b8 on a d10 roll will
-				grant a bonus on 8, 9, or 10.
+				roll is greater than or equal to the penalty number. For example, a b8
+				on a d10 roll will grant a bonus on 8, 9, or 10.
 			</P>
 			<P>
 				The target is a mandatory feature of any target roll. The bonus and
-				penalty are both optional and can be mixed together.
+				penalty are both optional and can be mixed.
 			</P>
 			<H3>Match Roll</H3>
-			<WriterLorem writer="poe" />
+			<P>
+				A match roll takes a match value and scores the roll based on how far
+				the total is from from the match value.
+			</P>
+			<P>
+				If the match value is a 7, and the user rolls two d6 resulting in a 4
+				and 5, then the score is '+2': two above the match target. If the same
+				roll results in a 2 and 3, then the score is '-2': two below the match
+				target. Finally, if the same roll results in a 3 and 4 then the score is
+				'0': a perfect match. A player making this roll would enter{' '}
+				<CodeSpan>/roll 2d6 m7</CodeSpan>.
+			</P>
+			<P>
+				A match roll can also add a margin to the match value to widen what
+				counts as a match. If the match value is 7 with a margin of 2, then any
+				roll from 5 to 9 will score as 0. A player making this roll would enter{' '}
+				<CodeSpan>/roll 2d6 m7 w2</CodeSpan>.
+			</P>
 		</div>
 	);
 }
