@@ -47,8 +47,9 @@ export default function RoomLayout() {
 		]);
 	}
 
+	// https://medium.com/@susiekim9/how-to-compensate-for-the-ios-viewport-unit-bug-46e78d54af0d
 	return (
-		<div className="h-screen">
+		<div className="h-screen h-[100dvh]">
 			<div className="flex flex-col h-full">
 				{/* Room Heading */}
 				<div>
