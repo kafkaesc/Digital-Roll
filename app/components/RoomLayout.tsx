@@ -49,7 +49,7 @@ export default function RoomLayout() {
 
 	// https://medium.com/@susiekim9/how-to-compensate-for-the-ios-viewport-unit-bug-46e78d54af0d
 	return (
-		<div className="flex flex-col h-screen">
+		<div className="flex flex-col h-[100dvh]">
 			{/* Room Heading */}
 			<div>
 				<H1>Chat Room</H1>
