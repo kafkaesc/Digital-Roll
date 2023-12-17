@@ -32,8 +32,8 @@ export default function InfoWalkthrough() {
 				</A>
 				. Rolling a single six-sided die will select a random number in the
 				range [1-6]. A die with a different number of sides will have a
-				different range. For example a ten-sided die will select a random number
-				on the range [1-10].
+				different range. For example, a ten-sided die will select a random
+				number on the range [1-10].
 			</P>
 			<P>
 				These two attributes are essential to all roll commands and can be
@@ -83,7 +83,7 @@ export default function InfoWalkthrough() {
 				There is another feature in Dungeons & Dragons where a roll can be made
 				"with advantage." Rolling with advantage means the player rolls two d20s
 				and uses the higher roll as their result while ignoring the other one.
-				For example if a player rolls a 5 on the first d20 and a 10 on the
+				For example, if a player rolls a 5 on the first d20 and a 10 on the
 				second d20, they would use 10 as their score. Digital Roll can account
 				for this. You can add <CodeSpan>kh</CodeSpan> to a roll to "keep
 				highest" among the rolled dice. A player rolling a d20 at advantage
@@ -113,7 +113,55 @@ export default function InfoWalkthrough() {
 				because the two concepts are contradictory.
 			</P>
 			<H3>Target Roll</H3>
-			<WriterLorem writer="melville" />
+			<P>
+				In the game{' '}
+				<A href="https://vtm.paradoxwikis.com" rel="noreferrer" target="_blank">
+					Vampire: The Masquerade
+				</A>{' '}
+				players make skill rolls that score based on how many d10s roll a 6 or
+				higher. For example, if a player has a strength of 4 that means they
+				will roll four d10s. If those four dice land on 7, 6, 5, and 4 then the
+				roll results in a score of 2. A point for each die {`>=`} 6 and no
+				points for any die below that.
+			</P>
+			<P>
+				A player in this situation would make a target roll with 6 as the target
+				by entering <CodeSpan>/roll 4d10 t6</CodeSpan>.
+			</P>
+			<P>
+				Vampire: The Masquerade also has a penalty of -1 when a die rolls a 1.
+				If a player rolls two 6s and two 1s the roll would be scored as an even
+				0. A play can include this penalty in a total roll by entering{' '}
+				<CodeSpan>/roll 4d10 t6 p1</CodeSpan>.
+			</P>
+			<P>
+				Note: In this case 1 is the minimum for any die roll, but when a target
+				roll has a penalty value, the -1 will be applied when a roll is {`<= `}
+				the penalty number. For example, p2 means the roll will take -1 on a 1
+				or 2.
+			</P>
+			<P>
+				The game{' '}
+				<A href="http://exalted.xi.co.nz" rel="noreferrer" target="_blank">
+					Exalted
+				</A>{' '}
+				has rolls similar to Vampire: The Masquerade with the addition of a
+				bonus point on any die that rolls 10. For example, if a player rolls two
+				d10s and the result is 8 and 10, that roll will score 3 points: one
+				point for the 8 and two points for the 10. A player can include this
+				penalty in their roll by entering <CodeSpan>/roll 2d10 t6 b10</CodeSpan>
+				.
+			</P>
+			<P>
+				Note: These games use d10s, so 10 is the maximum for a die roll, but
+				when a target roll has a bonus value the bonus will be applied when a
+				roll is {`>=`} the penalty number. For example a b8 on a d10 roll will
+				grant a bonus on 8, 9, or 10.
+			</P>
+			<P>
+				The target is a mandatory feature of any target roll. The bonus and
+				penalty are both optional and can be mixed together.
+			</P>
 			<H3>Match Roll</H3>
 			<WriterLorem writer="poe" />
 		</div>
