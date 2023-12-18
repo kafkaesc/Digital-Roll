@@ -13,6 +13,7 @@ export const meta: MetaFunction = () => {
 	];
 };
 
+/** @returns {JSX.Element} Page-level component for the Digital Roll homepage */
 export default function Index() {
 	return (
 		<div>
