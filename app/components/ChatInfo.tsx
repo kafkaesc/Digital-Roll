@@ -1,10 +1,10 @@
 import InfoChatCommands from '~/components/InfoChatCommands';
-import InfoMatchRoll from './InfoMatchRoll';
+import InfoMatchRoll from '~/components/InfoMatchRoll';
 import InfoNav from '~/components/InfoNav';
 import InfoRollTypes from '~/components/InfoRollTypes';
 import InfoTargetRoll from '~/components/InfoTargetRoll';
 import InfoTotalRoll from '~/components/InfoTotalRoll';
-import InfoWalkthrough from './InfoWalkthrough';
+import InfoWalkthrough from '~/components/InfoWalkthrough';
 
 import { useInfoPanelSwapper } from '~/hooks/useInfoPanelSwapper';
 
