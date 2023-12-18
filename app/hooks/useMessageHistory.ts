@@ -1,5 +1,11 @@
 import { useRef } from 'react';
 
+/**
+ * Hook that stores the history of messages its passed onto a stack. It
+ * provides functions for moving around the stack and adding new messages
+ * onto the stack.
+ * @returns functions for navigating the stack and adding messages to it
+ */
 export function useMessageHistory() {
 	const _curr = useRef<number>(0);
 	const _stack = useRef<Array<string>>([]);
