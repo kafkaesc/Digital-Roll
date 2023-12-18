@@ -5,6 +5,13 @@ import type {
 } from '~/types/RollResults';
 import { useRoll } from './useRoll';
 
+/**
+ * Hook returns the runRoll function, an omni function that will take a string,
+ * parse the necessary roll parameters, construct the appropriate roll object,
+ * and use that object to run the roll function from `useRoll`.
+ * @see useRoll
+ * @returns runRoll, a function to run a roll from chat input
+ */
 export default function useCommandRoll(): any {
 	const { roll } = useRoll();
 

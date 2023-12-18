@@ -1,5 +1,5 @@
 /**
- * @returns A collection of functions that will scan for chat commands
+ * @returns A collection of functions that can scan for chat commands
  * at the beginning of a string
  */
 export default function useCommandScan() {
