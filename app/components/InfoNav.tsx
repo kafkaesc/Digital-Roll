@@ -5,51 +5,51 @@ interface InfoNavProps {
 
 export default function InfoNav({ panels, setPanel }: InfoNavProps) {
 	return (
-		<ul className="text-center mb-2">
+		<ul className="mb-2 text-center">
 			<li
-				className="cursor-pointer inline-block"
+				className="inline-block cursor-pointer"
 				onClick={() => setPanel(panels.home)}
 			>
 				Home
 			</li>{' '}
 			🎲{' '}
 			<li
-				className="cursor-pointer inline-block"
+				className="inline-block cursor-pointer"
 				onClick={() => setPanel(panels.chatCommands)}
 			>
 				Chat Commands
 			</li>{' '}
 			🎲{' '}
 			<li
-				className="cursor-pointer inline-block"
+				className="inline-block cursor-pointer"
 				onClick={() => setPanel(panels.walkthrough)}
 			>
 				Rolls Walkthrough
 			</li>
 			<br />
 			<li
-				className="cursor-pointer inline-block"
+				className="inline-block cursor-pointer"
 				onClick={() => setPanel(panels.rollTypes)}
 			>
 				Roll Types
 			</li>{' '}
 			🎲{' '}
 			<li
-				className="cursor-pointer inline-block"
+				className="inline-block cursor-pointer"
 				onClick={() => setPanel(panels.matchRoll)}
 			>
 				Match Rolls
 			</li>{' '}
 			🎲{' '}
 			<li
-				className="cursor-pointer inline-block"
+				className="inline-block cursor-pointer"
 				onClick={() => setPanel(panels.targetRoll)}
 			>
 				Target Rolls
 			</li>{' '}
 			🎲{' '}
 			<li
-				className="cursor-pointer inline-block"
+				className="inline-block cursor-pointer"
 				onClick={() => setPanel(panels.totalRoll)}
 			>
 				Total Rolls

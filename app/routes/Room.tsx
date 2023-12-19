@@ -13,7 +13,8 @@ export const meta: MetaFunction = () => {
 	];
 };
 
-export default function Room() {
+/** @returns {JSX.Element} Page-level component for a Digital Roll chatroom */
+export default function Room(): JSX.Element {
 	return (
 		<div>
 			<RoomLayout />

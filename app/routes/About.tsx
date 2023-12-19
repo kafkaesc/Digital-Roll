@@ -13,7 +13,8 @@ export const meta: MetaFunction = () => {
 	];
 };
 
-export default function About() {
+/** @returns {JSX.Element} Page-level component for the Digital Roll About page */
+export default function About(): JSX.Element {
 	return (
 		<div>
 			<H1>About Digital Roll</H1>
