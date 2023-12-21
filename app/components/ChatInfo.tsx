@@ -8,6 +8,10 @@ import InfoWalkthrough from '~/components/InfoWalkthrough';
 
 import { useInfoPanelSwapper } from '~/hooks/useInfoPanelSwapper';
 
+/**
+ * @returns {JSX.Element} Component with a navigation area and a
+ * panel area that cna swap around to show the user information
+ */
 export default function ChatInfo() {
 	const { panel, panels, setPanel } = useInfoPanelSwapper();
 	return (
