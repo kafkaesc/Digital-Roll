@@ -3,6 +3,7 @@ import type { MetaFunction } from '@remix-run/node';
 import H1 from '~/elements/H1';
 import Link from '~/elements/Link';
 import P from '~/elements/P';
+import BodyColumn from '~/components/layout/BodyColumn';
 
 export const meta: MetaFunction = () => {
 	return [
@@ -31,7 +32,9 @@ export default function About(): JSX.Element {
 					About
 				</Link>
 			</div>
-			<P className="text-center">Built by Jared Hettinger</P>
+			<BodyColumn>
+				<P className="text-center">Built by Jared Hettinger</P>
+			</BodyColumn>
 		</div>
 	);
 }
