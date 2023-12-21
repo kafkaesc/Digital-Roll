@@ -21,13 +21,13 @@ export default function About(): JSX.Element {
 		<div>
 			<H1>About Digital Roll</H1>
 			<div className="text-center">
-				<Link to="/room" className="mx-1">
+				<Link to="/Room" className="mx-1">
 					Chatroom
 				</Link>
-				<Link to="/walkthrough" className="mx-1">
+				<Link to="/Walkthrough" className="mx-1">
 					Walkthrough
 				</Link>
-				<Link to="/about" className="mx-1">
+				<Link to="/About" className="mx-1">
 					About
 				</Link>
 			</div>
