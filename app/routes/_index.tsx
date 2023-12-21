@@ -1,6 +1,7 @@
 import type { MetaFunction } from '@remix-run/node';
 
 import H1 from '~/elements/H1';
+import Link from '~/elements/Link';
 
 export const meta: MetaFunction = () => {
 	return [
@@ -18,6 +19,17 @@ export default function Index() {
 	return (
 		<div>
 			<H1>Digital Roll</H1>
+			<div className="text-center">
+				<Link to="/room" className="mx-1">
+					Chatroom
+				</Link>
+				<Link to="/walkthrough" className="mx-1">
+					Walkthrough
+				</Link>
+				<Link to="/about" className="mx-1">
+					About
+				</Link>
+			</div>
 		</div>
 	);
 }
