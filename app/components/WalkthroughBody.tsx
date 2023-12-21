@@ -4,6 +4,7 @@ import Hx from '~/elements/Hx';
 import P from '~/elements/P';
 
 interface WalkthroughBodyProps {
+	hideTopHeading?: boolean;
 	initialH?: number;
 }
 
@@ -11,14 +12,20 @@ interface WalkthroughBodyProps {
  * @param {number} initialH Number for the top level heading,
  * e.g., 2 => <h2>, default value is 1
  * @see https://www.youtube.com/watch?v=xbRZE64S3U4
+ * @param {boolean} hideTopHeading If true the topmost heading does
+ * not display, default is false
  * @returns {JSX.Element} A walkthrough guide explaining how to format
  * roll commands in Digital Roll.
  */
-export default function WalkthroughBody({ initialH }: WalkthroughBodyProps) {
+export default function WalkthroughBody({
+	hideTopHeading,
+	initialH,
+}: WalkthroughBodyProps) {
 	const heading = initialH ? initialH : 1;
+	const hideTop = hideTopHeading ? hideTopHeading : false;
 	return (
 		<>
-			<Hx level={heading}>A Walkthrough of the Roll Commands</Hx>
+			{!hideTop && <Hx level={heading}>A Walkthrough of the Roll Commands</Hx>}
 			<P>
 				The <CodeSpan>/roll</CodeSpan> command contains three different types of
 				rolls each with optional parameters. This walkthrough will take you
