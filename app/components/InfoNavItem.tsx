@@ -14,7 +14,7 @@ interface InfoNavItemProps {
 export default function InfoNavItem({ children, clickFn }: InfoNavItemProps) {
 	return (
 		<li
-			className="inline-block cursor-pointer text-blue-600 hover:underline"
+			className="inline-block text-blue-600 cursor-pointer hover:underline"
 			onClick={() => clickFn()}
 		>
 			{children}

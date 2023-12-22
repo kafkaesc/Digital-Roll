@@ -11,13 +11,13 @@ export default function CodeSpan({
 }: CodeSpanProps) {
 	return className ? (
 		<code
-			className={`bg-slate-100 rounded px-1 py-0.5 text-sm ${className}`}
+			className={`px-1 py-0.5 text-sm rounded bg-slate-100 ${className}`}
 			{...props}
 		>
 			{children}
 		</code>
 	) : (
-		<code className="bg-slate-100 rounded px-1 py-0.5 text-sm" {...props}>
+		<code className="px-1 py-0.5 text-sm rounded bg-slate-100" {...props}>
 			{children}
 		</code>
 	);
