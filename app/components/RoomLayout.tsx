@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import H1 from '~/elements/H1';
-import ChatHistory from './ChatHistory';
-import ChatInput from './ChatInput';
-import RoomInfoArea from './RoomInfoArea';
+import ChatHistory from '~/components/ChatHistory';
+import ChatInput from '~/components/ChatInput';
+import RoomInfoArea from '~/components/RoomInfoArea';
+import Nav from './layout/Nav';
 import useCommandRoll from '~/hooks/useCommandRoll';
 import useCommandScan from '~/hooks/useCommandScan';
 
@@ -53,6 +54,7 @@ export default function RoomLayout() {
 			{/* Room Heading */}
 			<div>
 				<H1>Chat Room</H1>
+				<Nav />
 			</div>
 			<div className="flex-auto overflow-y-hidden">
 				{/* Left Column */}
