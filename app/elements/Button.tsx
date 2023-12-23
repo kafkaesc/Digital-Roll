@@ -106,6 +106,21 @@ const TextButton = ({
 	);
 };
 
+/**
+ * Button is an element level component for the HTML button element.
+ *
+ * All element components should recreate the use of a styled HTML element
+ * with the ability to pass any attributes associated with that element into
+ * its instance within this component.
+ * @param {'primary' | 'secondary' | 'text'} buttonStyle Option string
+ * indicating how the button will display, if undefined or null the default
+ * value is 'primary'
+ * @param {ReactNode} children The content of the button element
+ * @param {string} className Optional string, if included it will be appended
+ * to the other classes styling the element
+ * @param {any} props Properties that will be passed along the the button element
+ * @returns {JSX.Element} A styled button element
+ */
 export default function Button({
 	buttonStyle,
 	children,
