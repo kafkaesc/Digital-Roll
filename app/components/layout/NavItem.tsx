@@ -1,7 +1,9 @@
+import { ReactNode } from 'react';
+
 import { Link } from '@remix-run/react';
 
 interface NavItemProps {
-	children: any;
+	children: ReactNode;
 	to: string;
 }
 
