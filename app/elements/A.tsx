@@ -1,5 +1,7 @@
+import { ReactNode } from 'react';
+
 interface AProps {
-	children: any;
+	children: ReactNode;
 	className?: string;
 	[props: string]: any;
 }

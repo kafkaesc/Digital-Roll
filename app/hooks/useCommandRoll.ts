@@ -12,7 +12,7 @@ import { useRoll } from './useRoll';
  * @see useRoll
  * @returns runRoll, a function to run a roll from chat input
  */
-export default function useCommandRoll(): any {
+export default function useCommandRoll() {
 	const { roll } = useRoll();
 
 	/**

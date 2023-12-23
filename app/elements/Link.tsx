@@ -1,7 +1,8 @@
+import { ReactNode } from 'react';
 import { Link as ReLink } from '@remix-run/react';
 
 interface LinkProps {
-	children: any;
+	children: ReactNode;
 	className?: string;
 	to: string;
 	[props: string]: any;
