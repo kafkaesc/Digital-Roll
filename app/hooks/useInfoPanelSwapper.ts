@@ -1,4 +1,4 @@
-import { usePanelSwapper } from './usePanelSwapper';
+import { usePanelSwapper } from '~/hooks/usePanelSwapper';
 
 const panelCodes = [
 	'home',

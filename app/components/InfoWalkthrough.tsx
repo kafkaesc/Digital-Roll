@@ -1,4 +1,4 @@
-import WalkthroughBody from './WalkthroughBody';
+import WalkthroughBody from '~/components/WalkthroughBody';
 
 export default function InfoWalkthrough() {
 	return (

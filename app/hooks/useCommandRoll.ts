@@ -3,7 +3,7 @@ import type {
 	TargetRollResult,
 	TotalRollResult,
 } from '~/types/RollResults';
-import { useRoll } from './useRoll';
+import { useRoll } from '~/hooks/useRoll';
 
 /**
  * Hook returns the runRoll function, an omni function that will take a string,

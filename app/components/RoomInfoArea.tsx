@@ -1,4 +1,4 @@
-import ChatInfo from './ChatInfo';
+import ChatInfo from '~/components/ChatInfo';
 
 // TODO: Up this to be second column on large displays,
 // hide off screen and slide up on small displays

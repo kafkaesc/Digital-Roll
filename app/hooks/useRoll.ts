@@ -1,4 +1,4 @@
-import { useDiceSet } from './useDiceSet';
+import { useDiceSet } from '~/hooks/useDiceSet';
 import type { MatchRoll, TargetRoll, TotalRoll } from '~/types/Rolls';
 import type {
 	MatchRollResult,

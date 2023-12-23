@@ -4,7 +4,7 @@ import H1 from '~/elements/H1';
 import ChatHistory from '~/components/ChatHistory';
 import ChatInput from '~/components/ChatInput';
 import RoomInfoArea from '~/components/RoomInfoArea';
-import Nav from './layout/Nav';
+import Nav from '~/components/layout/Nav';
 import useCommandRoll from '~/hooks/useCommandRoll';
 import useCommandScan from '~/hooks/useCommandScan';
 
