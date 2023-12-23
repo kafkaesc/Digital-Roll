@@ -5,7 +5,7 @@ import Nav from '~/components/layout/Nav';
 
 export const meta: MetaFunction = () => {
 	return [
-		{ title: 'Digital Roll: Same rolls in a bigger world' },
+		{ title: 'Digital Roll : Digital rolls in a digital world' },
 		{
 			name: 'description',
 			content:

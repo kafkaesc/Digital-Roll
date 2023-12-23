@@ -1,4 +1,17 @@
+import { MetaFunction } from '@remix-run/react';
+
 import H1 from '~/elements/H1';
+
+export const meta: MetaFunction = () => {
+	return [
+		{ title: 'Test : Digital Roll : Built by Jared Hettinger' },
+		{
+			name: 'description',
+			content:
+				'Hey! How did you get here? This is a test page for Digital Roll.',
+		},
+	];
+};
 
 export default function Test() {
 	/*

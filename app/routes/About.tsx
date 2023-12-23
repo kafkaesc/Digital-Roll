@@ -7,11 +7,10 @@ import Nav from '~/components/layout/Nav';
 
 export const meta: MetaFunction = () => {
 	return [
-		{ title: 'About | Digital Roll' },
+		{ title: 'About : Digital Roll : Built by Jared Hettinger' },
 		{
 			name: 'description',
-			content:
-				'Digital Roll provides an online experience for tabletop dice rolls between friends',
+			content: 'About Digital Roll, a digital place to roll with friends',
 		},
 	];
 };

@@ -4,11 +4,10 @@ import RoomLayout from '~/components/RoomLayout';
 
 export const meta: MetaFunction = () => {
 	return [
-		{ title: 'Chatroom | Digital Roll' },
+		{ title: 'Chatroom : Digital Roll : Built by Jared Hettinger' },
 		{
 			name: 'description',
-			content:
-				'Digital Roll provides an online experience for tabletop dice rolls between friends',
+			content: 'Digital Roll Chatroom : Where the rolls and results happen',
 		},
 	];
 };
