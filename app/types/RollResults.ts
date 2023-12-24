@@ -6,12 +6,13 @@
  * - score, the calculated score for the roll, and
  * - sideCount - the number of sides on the dice that were rolled
  */
-type RollResult = {
+export type RollResult = {
 	diceCount: number;
 	diceResults: Array<number>;
 	display: string; // TODO: Break off display and use a printing hook
 	score: number;
 	sideCount: number;
+	userInput: string;
 };
 
 /**

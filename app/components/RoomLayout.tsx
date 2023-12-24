@@ -25,26 +25,42 @@ export default function RoomLayout() {
 		}
 
 		if (commandScanner.scanForRoll(st)) {
-			const result = commandRoll.runRoll(st);
-			setChatHistory((prev) => [
-				...prev,
-				{
-					displayName: activeUser,
-					isCommand: true,
-					message: `rolled ${st}, Result: ${result.display}`,
-					timestamp: new Date().toUTCString(),
-				},
-			]);
-			return;
+			try {
+				const result = commandRoll.runRoll(st);
+				setChatHistory((prev) => [
+					...prev,
+					{
+						displayName: activeUser,
+						isCommand: true,
+						isRollCommand: true,
+						rollResult: result,
+						timestamp: new Date().toUTCString(),
+						userName: activeUser,
+					},
+				]);
+				return;
+			} catch (err) {
+				setChatHistory((prev) => [
+					...prev,
+					{
+						displayName: activeUser,
+						errorObj: err,
+						isError: true,
+						timestamp: new Date().toUTCString(),
+						userName: activeUser,
+					},
+				]);
+				return;
+			}
 		}
 
 		setChatHistory((prev) => [
 			...prev,
 			{
 				displayName: activeUser,
-				isCommand: false,
 				message: st,
 				timestamp: 'now',
+				userName: activeUser,
 			},
 		]);
 	}

@@ -5,6 +5,7 @@
 type Roll = {
 	diceCount: number;
 	sideCount: number;
+	userInput: string;
 };
 
 /**

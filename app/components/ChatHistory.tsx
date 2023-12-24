@@ -1,8 +1,13 @@
 import { useEffect, useRef } from 'react';
-import P from '~/elements/P';
+import ChatLineDisplay from '~/components/ChatLineDisplay';
+import {
+	CommandErrorNotice,
+	RollCommandNotice,
+	UserChat,
+} from '~/types/ChatLines';
 
 interface ChatHistoryProps {
-	chatHistory: Array<any>;
+	chatHistory: Array<CommandErrorNotice | RollCommandNotice | UserChat>;
 }
 
 export default function ChatHistory({ chatHistory }: ChatHistoryProps) {
@@ -16,18 +21,10 @@ export default function ChatHistory({ chatHistory }: ChatHistoryProps) {
 		<div className="h-full p-1">
 			{chatHistory.map((ch) => {
 				return (
-					<P key={`${ch.displayName}-${ch.timestamp}`}>
-						{ch.isCommand ? (
-							<span className="italic">
-								{ch.displayName} {ch.message}
-							</span>
-						) : (
-							<>
-								<span className="font-bold">{ch.displayName}:</span>{' '}
-								{ch.message}
-							</>
-						)}
-					</P>
+					<ChatLineDisplay
+						key={`${ch.userName}-${ch.timestamp}`}
+						chatLine={ch}
+					/>
 				);
 			})}
 			<div ref={bottomRef} />
