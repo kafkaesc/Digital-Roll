@@ -1,4 +1,4 @@
-import InfoNavItem from './InfoNavItem';
+import InfoNavItem from '~/components/InfoNavItem';
 
 interface InfoNavProps {
 	panels: any;

@@ -3,7 +3,7 @@ import type {
 	TargetRollResult,
 	TotalRollResult,
 } from '~/types/RollResults';
-import { useRoll } from './useRoll';
+import { useRoll } from '~/hooks/useRoll';
 
 /**
  * Hook returns the runRoll function, an omni function that will take a string,
@@ -177,6 +177,7 @@ export default function useCommandRoll() {
 	function runRoll(
 		st: string
 	): MatchRollResult | TargetRollResult | TotalRollResult {
+		const userInput = `${st}`;
 		const commandParts: Array<string> = st.split(' ');
 		const diceString = commandParts[1];
 
@@ -248,6 +249,7 @@ export default function useCommandRoll() {
 				rollType: 'match',
 				sideCount: sideCount,
 				target: m,
+				userInput: userInput,
 			});
 			return result;
 		} else if (targetRoll) {
@@ -265,6 +267,7 @@ export default function useCommandRoll() {
 				rollType: 'target',
 				sideCount: sideCount,
 				target: t,
+				userInput: userInput,
 			});
 			return result;
 		} else {
@@ -275,6 +278,7 @@ export default function useCommandRoll() {
 				modifier: modifier,
 				rollType: 'total',
 				sideCount: sideCount,
+				userInput: userInput,
 			});
 			return result;
 		}
