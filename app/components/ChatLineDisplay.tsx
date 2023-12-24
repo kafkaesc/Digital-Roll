@@ -1,3 +1,4 @@
+import CodeSpan from '~/elements/CodeSpan';
 import P from '~/elements/P';
 
 import {
@@ -13,12 +14,13 @@ interface ChatLineDisplayProps {
 export default function ChatLineDisplay({ chatLine }: ChatLineDisplayProps) {
 	return chatLine && 'isError' in chatLine ? (
 		<P>
-			<span className="italic">{chatLine.errorObj.message}</span>
+			<span className="italic text-red-700">{chatLine.errorObj.message}</span>
 		</P>
 	) : chatLine && 'isCommand' in chatLine ? (
 		<P>
 			<span className="italic">
-				{chatLine.displayName} rolled {chatLine.rollResult.userInput}, Result:{' '}
+				{chatLine.displayName} rolled{' '}
+				<CodeSpan>{chatLine.rollResult.userInput}</CodeSpan>, Result:{' '}
 				{chatLine.rollResult?.display}
 			</span>
 		</P>
